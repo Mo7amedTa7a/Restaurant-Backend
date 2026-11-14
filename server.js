@@ -74,7 +74,19 @@ app.use("/coupon", couponRouter);
 app.use("/reviews", reviewRouter);
 app.use("/admin", adminRouter);
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+
+app.use(
+  '/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument, {
+    customCssUrl: CSS_URL,
+    customJs: [
+      "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui-bundle.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui-standalone-preset.js",
+    ],
+  })
+);
 
 app.use((req, res, next) => {
   res.status(404).json({ message: `Route ${req.originalUrl} not found` });
