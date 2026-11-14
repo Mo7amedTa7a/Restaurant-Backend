@@ -38,7 +38,11 @@ app.post(
 // MiddleWares
 app.use(express.json({ limit: "10kb" }));
 
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false, 
+  })
+);
 
 // app.use(mongoSanitize());
 
@@ -74,18 +78,18 @@ app.use("/coupon", couponRouter);
 app.use("/reviews", reviewRouter);
 app.use("/admin", adminRouter);
 
-const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+const swaggerOptions = {
+  customCssUrl: 'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.3.0/swagger-ui.min.css',
+  customJs: [
+    'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.3.0/swagger-ui-bundle.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.3.0/swagger-ui-standalone-preset.js'
+  ]
+};
 
 app.use(
   '/api-docs',
-  swaggerUi.serve,
-  swaggerUi.setup(swaggerDocument, {
-    customCssUrl: CSS_URL,
-    customJs: [
-      "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui-bundle.js",
-      "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui-standalone-preset.js",
-    ],
-  })
+  swaggerUi.serveFiles(swaggerDocument, swaggerOptions),
+  swaggerUi.setup(swaggerDocument, swaggerOptions)
 );
 
 app.use((req, res, next) => {
