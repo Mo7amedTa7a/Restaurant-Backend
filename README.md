@@ -278,7 +278,7 @@ NODE_ENV=development
 
 يحتوي النظام على توثيق تفاعلي كامل مدمج، يمكنك من خلاله تجربة جميع الـ Endpoints وتمرير ترويسة المصادقة `Bearer Token` مباشرة من المتصفح:
 
-📍 **رابط التوثيق المحلي:** [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+📍 **رابط التوثيق المحلي:** [https://restaurant-api-ruddy.vercel.app/api-docs/](https://restaurant-api-ruddy.vercel.app/api-docs/)
 
 ---
 
