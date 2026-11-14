@@ -87,6 +87,10 @@ connectDB();
 
 startCronJobs();
 
-app.listen(3000, () => {
-  console.log("Server is Ruining :http://localhost:3000/");
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
+}
+
+export default app;
