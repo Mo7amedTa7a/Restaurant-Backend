@@ -6,7 +6,7 @@ const doc = {
     description: 'API Documentation for the Restaurant E-commerce Backend System',
     version: '1.0.0',
   },
-  host: 'localhost:3000',
+  host: 'https://restaurant-api-ruddy.vercel.app/',
   schemes: ['http'],
   securityDefinitions: {
     bearerAuth: {
